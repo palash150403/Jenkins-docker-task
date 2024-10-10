@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         dockerImage = ''
+        registry = 'palash150403/dockerjenkins'
     }
 
     stages {
