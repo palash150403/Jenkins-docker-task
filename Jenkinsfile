@@ -31,5 +31,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Run conatiner') {
+            steps {
+                script {
+                    dockerImage.run('-d -p 8086:80')
+                }
+            }
+        }
     }
 }
