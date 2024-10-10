@@ -4,6 +4,7 @@ pipeline {
     environment {
         dockerImage = ''
         registry = 'palash150403/dockerjenkins'
+        registryCredential = 'f8c00948-9f27-404e-a459-e8c614695809'
     }
 
     stages {
@@ -17,6 +18,16 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build registry
+                }
+            }
+        }
+
+        stage('Upload docker image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
